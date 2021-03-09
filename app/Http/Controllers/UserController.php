@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use Hash;
+use Auth;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -9,6 +11,18 @@ class UserController extends Controller
    public function index()
    {
       return view('login.login');
+   }
+
+   public function proses_masuk(Request $req)
+   {
+      $email = $req->email;
+      $password = $req->password;
+
+      if(Auth::attempt(['email' => $email, 'password' => $password])){
+         return redirect('/masyarakat');
+      } else{
+         return back();
+      }
    }
 
    public function registrasi()
@@ -31,13 +45,19 @@ class UserController extends Controller
      User::create([
         'nama' => $req->nama,
         'email' => $req->email,
-        'password' => $req->password,
+        'password' => Hash::make($req->password),
         'telp' => $req->telp,
         'alamat' => $req->alamat
      ]);
 
-      return redirect('/login');
+      return redirect('/masuk');
 
+   }
+
+   public function keluar()
+   {
+      Auth::logout();
+      return redirect('/');
    }
 
 

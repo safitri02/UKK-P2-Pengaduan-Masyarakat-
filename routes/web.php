@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\MasyarakatController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +22,13 @@ use App\Http\Controllers\UserController;
 // });
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/keluar', [UserController::class, 'keluar']);
 Route::get('/masuk', [UserController::class, 'index']);
 Route::get('/registrasi', [UserController::class, 'registrasi']);
 Route::post('/proses_registrasi', [UserController::class, 'proses_registrasi']);
+Route::post('/proses_masuk', [UserController::class, 'proses_masuk']);
+
+
+// Route Masyarakat
+Route::get('/masyarakat', [MasyarakatController::class, 'index']);
+

@@ -63,6 +63,10 @@ span{
     margin-top: 80px;
 }
 
+.mt-10{
+    margin-top: 100px;
+}
+
 .tentang img{
     width: 550px;
 }
@@ -78,8 +82,9 @@ span{
     height: 100px;
 }
 
-.card{
+.none{
     border: none;
+    border-radius: 10px;
 }
 
 .registrasi{
