@@ -17,8 +17,9 @@ class CreatePengaduanTable extends Migration
             $table->id();
             $table->integer('id_user');
             $table->string('judul');
-            $table->date('tanggal');
+            $table->string('tanggal');
             $table->string('isi');
+            $table->string('gambar');
             $table->string('status');
             $table->timestamps();
         });

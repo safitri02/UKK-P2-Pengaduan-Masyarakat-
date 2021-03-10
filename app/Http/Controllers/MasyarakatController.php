@@ -1,85 +1,52 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Masyarakat;
+use Auth;
+// use RealRashid\SweetAlert\Facades\Alert;
+use File;
+use Alert;
+use App\Models\Pengaduan;
 use Illuminate\Http\Request;
 
 class MasyarakatController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        return view('masyarakat.index');
+        $data = Pengaduan::with('user')->orderBy('created_at', 'DESC')->get();
+        return view('masyarakat.index', compact('data'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function pengaduan(Request $req)
     {
-        //
+    //    return $req;
+        // $req->validate([
+        //     'id' => 'required',
+        //     'id_user' => 'required',
+        //     'judul' => 'required',
+        //     'tanggal' => 'required',
+        //     'isi' => 'required',
+        //     'status' => 'required'
+        // ]);
+
+        $data = new Pengaduan;
+        $data->id_user = Auth()->user()->id;
+        $data->judul = $req->judul;
+        $data->tanggal = $req->tanggal;
+        $data->isi = $req->isi;
+        $data->gambar = $req->file('gambar')->store('/asset/gambar', 'public');
+        $data->status = "PROSES";
+        $data->save();
+
+        Alert::success('Terkirim!', 'Pengaduan berhasil dikirim, silahkan tunggu petugas untuk mersepon');
+        return back();
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function show($id)
     {
-        //
+       $data = Pengaduan::find($id);
+       return view('masyarakat.detail', compact('data'));
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Masyarakat  $masyarakat
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Masyarakat $masyarakat)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Masyarakat  $masyarakat
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Masyarakat $masyarakat)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Masyarakat  $masyarakat
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Masyarakat $masyarakat)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Masyarakat  $masyarakat
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Masyarakat $masyarakat)
-    {
-        //
-    }
+    
 }

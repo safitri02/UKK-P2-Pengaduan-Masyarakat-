@@ -18,6 +18,8 @@ class CreatePetugasTable extends Migration
             $table->string('nama');
             $table->string('username');
             $table->string('password');
+            $table->string('telp');
+            $table->string('alamat');
             $table->string('role');
             $table->timestamps();
         });

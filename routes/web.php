@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MasyarakatController;
-
+use App\Http\Controllers\PetugasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,4 +31,8 @@ Route::post('/proses_masuk', [UserController::class, 'proses_masuk']);
 
 // Route Masyarakat
 Route::get('/masyarakat', [MasyarakatController::class, 'index']);
+Route::post('/masyarakat/pengaduan', [MasyarakatController::class, 'pengaduan']);
+Route::get('/pengaduan/lihat/{id}', [MasyarakatController::class, 'show']);
 
+// Petugas dan admin
+Route::get('/petugas', [PetugasController::class, 'index']);

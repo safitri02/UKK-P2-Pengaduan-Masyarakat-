@@ -11,12 +11,12 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav ml-auto">
+      <a href="/masyarakat" class="nav-link"> Pengaduan</a>
       <a class="nav-link mr-5" href="/keluar">Keluar</a>
     </div>
   </div>
 </nav>
 {{-- End Navbar --}}
-
 <div class="container mt-10 mb-5">
 <div class="row">
   <div class="col-md-7">
@@ -25,20 +25,25 @@
       <div class="card-title"><h5>Form Pengaduan</h5></div>
     </div>
         <div class="card-body">
-          <form>
+          <form action="/masyarakat/pengaduan" method="post" enctype="multipart/form-data">
+            @csrf
             <div class="form-group">
-              <label for="exampleInputEmail1">Judul</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-               <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              <label for="judul">Judul</label>
+              <input type="text" class="form-control" autocomplete="off" autofocus name="judul" aria-describedby="judul" placeholder="Judul" {{ old('judul') }}>
+               {{-- <small id="judul" class="form-text text-muted">We'll never share your email with anyone else.</small> --}}
+            </div>
+            <div class="form-group">
+              <label for="tanggal">Tanggal</label>
+              <input type="date" {{ old('tanggal') }} name="tanggal" autocomplete="off" autofocus class="form-control" id="tanggal">
             </div>
              <div class="form-group">
-              <label for="exampleInputEmail1">Tanggal</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            </div>
+              <label for="">Isi Pengaduan</label>
+              <textarea {{ old('isi') }} name="isi" class="form-control" autocomplete="off" autofocus placeholder="Isi Pengaduan" rows="4"></textarea>
+            </div> 
              <div class="form-group">
-              <label for="exampleInputEmail1">Isi Pengaduan</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
-            </div>  
+              <label for="gambar">Bukti</label>
+              <input type="file" {{ old('gambar') }} name="gambar" autocomplete="off" autofocus class="form-control" id="gambar">
+            </div> 
             <button type="submit" class="btn btn-primary">Ajukan</button>
           </form>
         </div>
@@ -58,15 +63,34 @@
         <tr>
           <th scope="col">No</th>
           <th scope="col">Pengaduan</th>
+          <th scope="col">Bukti</th>
+          <th scope="col">Status</th>
           <th scope="col">Aksi</th>
         </tr>
       </thead>
       <tbody>
+      <?php $no = 1; ?>
+      @forelse($data as $d)
         <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Lihat</td>
+          <th scope="row">{{ $no++ }}</th>
+          <td>{{ $d->judul }}</td>
+          <td>  <img class="gambar" src="{{ url('/storage/' .$d->gambar) }}"> </td>
+            <td>
+              @if($d->status = 'PROSES')
+                <span class="badge badge-warning">
+              @elseif($d->status = 'SELESAI')
+                 <span class="badge badge-success">
+              @else
+              <span>
+              @endif
+              {{ $d->status }}
+              </span>
+            </td>
+          <td><a href="/pengaduan/lihat/{{ $d->id }}"><i class="fa fa-eye"> </i></a></td>
         </tr>
+        @empty 
+        <td colspan="4" class="text-center">Belom ada pengaduan</td>
+      @endforelse
       </tbody>
     </table>
   </div>
