@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="{{ url('../temp/css/components.css') }}">
 </head>
 
+@include('sweetalert::alert')
+
 <body>
   <div id="app">
     <section class="section">

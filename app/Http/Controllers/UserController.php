@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Hash;
 use Auth;
+use Alert;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -15,14 +16,23 @@ class UserController extends Controller
 
    public function proses_masuk(Request $req)
    {
-      $email = $req->email;
-      $password = $req->password;
+      $data = [
+         'email' => $req->input('email'),
+         'password' => $req->input('password')
+      ];
 
-      if(Auth::attempt(['email' => $email, 'password' => $password])){
-         return redirect('/masyarakat');
+      Auth::attempt($data);
+
+      if(Auth()->user()->role == "admin"){
+         Alert::success('Success Title', 'Success Message');
+         return redirect('/admin');
+      }elseif(Auth()->user()->role == "user"){
+        return redirect('/masyarakat');
       } else{
-         return back();
+         echo "Username atau password salah";
       }
+
+
    }
 
    public function registrasi()
@@ -33,23 +43,26 @@ class UserController extends Controller
    public function proses_registrasi(Request $req)
    {
       
-      $req->validate([
-         'nama' => 'required',
-         'email' => 'required|email',
-         'password' => 'required|min:6|confirmed',
-         'telp' => 'required',
-         'alamat' => 'required',
-      ]);
+      // $req->validate([
+      //    'nama' => 'required',
+      //    'email' => 'required|email',
+      //    'password' => 'required|min:6|confirmed',
+      //    'telp' => 'required',
+      //    'alamat' => 'required',
+      //    'role' => 'required'
+      // ]);
 
       // return $req;
-     User::create([
-        'nama' => $req->nama,
-        'email' => $req->email,
-        'password' => Hash::make($req->password),
-        'telp' => $req->telp,
-        'alamat' => $req->alamat
-     ]);
-
+      $user = new User;
+      $user->nama = $req->nama;
+      $user->email = $req->email;
+      $user->password = bcrypt($req->password);
+      $user->telp = $req->telp;
+      $user->alamat = $req->alamat;
+      $user->role = "user";
+      $user->save();
+      // dd($user);
+      Alert::success('Berhasil', 'Registrasi Berhasil');
       return redirect('/masuk');
 
    }

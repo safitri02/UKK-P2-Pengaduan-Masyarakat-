@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="../temp/css/style.css">
   <link rel="stylesheet" href="../temp/css/components.css">
 </head>
-
+@include('sweetalert::alert')
 <body>
   <div id="app">
     <section class="section">
