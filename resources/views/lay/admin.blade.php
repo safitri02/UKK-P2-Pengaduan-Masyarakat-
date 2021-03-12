@@ -11,8 +11,8 @@
   <!-- CSS Libraries -->
 
   <!-- Template CSS -->
-  <link rel="stylesheet" href="../temp/css/style.css">
-  <link rel="stylesheet" href="../temp/css/components.css">
+  <link rel="stylesheet" href="{{ url('../temp/css/style.css') }}">
+  <link rel="stylesheet" href="{{ url('../temp/css/components.css') }}">
 </head>
 
 @yield('body')
@@ -21,7 +21,7 @@
     <div class="main-wrapper container">
       <div class="navbar-bg"></div>
       <nav class="navbar navbar-expand-lg main-navbar">
-        <a href="index.html" class="navbar-brand sidebar-gone-hide">E-Complaint</a>
+        <a href="/admin" class="navbar-brand sidebar-gone-hide">E-Complaint</a>
         <div class="navbar-nav">
           <a href="#" class="nav-link sidebar-gone-show" data-toggle="sidebar"><i class="fas fa-bars"></i></a>
         </div>
@@ -30,8 +30,8 @@
             <i class="fas fa-ellipsis-v"></i>
           </a>
           <ul class="navbar-nav">
-            <li class="nav-item"><a href="#" class="nav-link">Data Masyarakat</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Data Aduan</a></li>
+            <li class="nav-item"><a href="/admin/masyarakat" class="nav-link">Data Masyarakat</a></li>
+            <li class="nav-item"><a href="/admin/aduan" class="nav-link">Data Aduan</a></li>
             {{-- <li class="nav-item"><a href="#" class="nav-link">Server Status</a></li> --}}
           </ul>
         </div>
@@ -45,8 +45,8 @@
         </form>
         <ul class="navbar-nav navbar-right">
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-            <img alt="image" src="../temp/img/avatar/avatar-1.png" class="rounded-circle mr-1">
-            <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div></a>
+            <img alt="image" src="{{ url('../temp/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
+            <div class="d-sm-none d-lg-inline-block">Hai {{ Auth()->user()->nama }}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
               <div class="dropdown-divider"></div>
               <a href="/keluar" class="dropdown-item has-icon text-danger">
@@ -59,7 +59,7 @@
 
 <nav class="navbar navbar-secondary navbar-expand-lg">
     <div class="container">
-      <h4>E-Complaint</h4>
+      <h4>Hallo {{ Auth()->user()->nama }}, Kamu masuk sebagai {{ Auth()->user()->role }}</h4>
     </div>
 </nav>
 
@@ -91,15 +91,15 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-  <script src="../temp/js/stisla.js"></script>
+  <script src="{{ url('../temp/js/stisla.js') }}"></script>
 
   <!-- JS Libraies -->
 
   <!-- Page Specific JS File -->
 
   <!-- Template JS File -->
-  <script src="../temp/js/scripts.js"></script>
-  <script src="../temp/js/custom.js"></script>
+  <script src="{{ url('../temp/js/scripts.js') }}"></script>
+  <script src="{{ url('../temp/js/custom.js') }}"></script>
 
 
 </body></html>

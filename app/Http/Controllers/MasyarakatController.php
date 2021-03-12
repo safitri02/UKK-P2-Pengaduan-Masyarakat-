@@ -7,13 +7,15 @@ use File;
 use Alert;
 use App\Models\Pengaduan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MasyarakatController extends Controller
 {
 
     public function index()
     {
-        $data = Pengaduan::with('user')->orderBy('created_at', 'DESC')->get();
+        $id = Auth()->user()->id;
+        $data = DB::table('pengaduan')->where('id_user', $id)->get();
         return view('masyarakat.index', compact('data'));
     }
 

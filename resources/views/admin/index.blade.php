@@ -92,7 +92,10 @@
       <tr>
         <th>{{ $no++ }}</th>
         <td>{{ $d->nama }}</td>
-        <td>dhjhjhas</td>
+        <td>
+        <a href="/masyarakat/detail/{{ $d->id }}"><i class="fa fa-eye"> </i></a>
+        <a href="/masyarakat/detail/{{ $d->id }}"><i class="fa fa-edit ml-3"> </i></a>
+        </td>
       </tr>
       @endforeach
     </tbody>
@@ -124,8 +127,21 @@
         <th>{{ $no++ }}</th>
         <td>{{ $a->user->nama }}</td>
         <td>{{ $a->judul }}</td>
-        <td> {{ $a->status }} </td>
-        <td>aksi</td>
+        <td>
+          @if($a->status == "PROSES")
+          <span class="badge badge-warning">
+          @elseif($a->status == "DITERIMA")
+          <span class="badge badge-success">
+          @else
+         <span>
+         @endif
+         {{ $a->status }}
+         </span>
+        </td>
+        <td>
+          <a href="/pengaduan/detail/{{ $d->id }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"> </i></a>
+          {{-- <a href="/masyarakat/detail/{{ $d->id }}" class="btn btn-success btn-sm"><i class="fa fa-check ml-3"> </i></a> --}}
+        </td>
       </tr>
       @endforeach
     </tbody>

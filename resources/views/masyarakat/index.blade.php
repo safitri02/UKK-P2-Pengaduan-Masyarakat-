@@ -44,7 +44,7 @@
               <label for="gambar">Bukti</label>
               <input type="file" {{ old('gambar') }} name="gambar" autocomplete="off" autofocus class="form-control" id="gambar">
             </div> 
-            <button type="submit" class="btn btn-primary">Ajukan</button>
+            <button type="submit" class="btn btn-primary mt-2">Ajukan</button>
           </form>
         </div>
       </div>
@@ -54,7 +54,7 @@
 <div class="col-md-5">
 <div class="card shadow">
 <div class="card-header">
-   <div class="card-title"><h5>List Pengaduan Anda</h5></div>
+   <div class="card-title"><h5>Hallo {{ Auth()->user()->nama }}, <br> Berikut List Pengaduan Anda</h5></div>
 </div>
    
   <div class="card-body">
@@ -78,8 +78,10 @@
             <td>
               @if($d->status = 'PROSES')
                 <span class="badge badge-warning">
-              @elseif($d->status = 'SELESAI')
+              @elseif($d->status = 'TERIMA')
                  <span class="badge badge-success">
+              @elseif($d->status = 'TOLAK')
+              <span class="badge badge-danger">
               @else
               <span>
               @endif
@@ -89,7 +91,7 @@
           <td><a href="/pengaduan/lihat/{{ $d->id }}"><i class="fa fa-eye"> </i></a></td>
         </tr>
         @empty 
-        <td colspan="4" class="text-center">Belom ada pengaduan</td>
+        <td colspan="5" class="text-center">Belom ada pengaduan</td>
       @endforelse
       </tbody>
     </table>

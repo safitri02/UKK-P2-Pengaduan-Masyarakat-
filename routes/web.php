@@ -28,7 +28,6 @@ Route::get('/registrasi', [UserController::class, 'registrasi']);
 Route::post('/proses_registrasi', [UserController::class, 'proses_registrasi']);
 Route::post('/proses_masuk', [UserController::class, 'proses_masuk']);
 
-
 // Route Masyarakat
 Route::get('/masyarakat', [MasyarakatController::class, 'index']);
 Route::post('/masyarakat/pengaduan', [MasyarakatController::class, 'pengaduan']);
@@ -36,5 +35,7 @@ Route::get('/pengaduan/lihat/{id}', [MasyarakatController::class, 'show']);
 
 // Admin
 Route::get('/admin', [AdminController::class, 'index']);
-
-
+Route::get('/admin/masyarakat', [AdminController::class, 'masyarakat']);
+Route::get('/admin/aduan', [AdminController::class, 'aduan']);
+Route::get('/pengaduan/detail/{id}', [AdminController::class, 'detail']);
+Route::get('/tanggapan/{id}/status', [AdminController::class, 'status']);
