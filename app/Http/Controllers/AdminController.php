@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Models\User;
 use App\Models\Pengaduan;
+use App\Models\Tanggapan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -30,8 +31,9 @@ class AdminController extends Controller
 
     public function detail(Request $req, $id)
     {
+        $t = DB::table('tanggapan')->where('id_pengaduan', $id)->get();
         $data = Pengaduan::with('user')->find($id)->first();
-        return view('admin.aduanDetail', compact('data'));
+        return view('admin.aduanDetail', compact('data', 't'));
     }
 
     public function status(Request $req, $id)
@@ -43,6 +45,19 @@ class AdminController extends Controller
         $status = Pengaduan::find($id);
         $status->status = $req->status;
         $status->save();
+
+        return back();
+    }
+
+    public function tanggapan(Request $req, $id)
+    {
+        // return $req;
+        $id_pengaduan = $id;
+        $tanggapan = new Tanggapan;
+        $tanggapan->id_user = Auth()->user()->id;
+        $tanggapan->tanggapan = $req->tanggapan;
+        $tanggapan->id_pengaduan = $id_pengaduan;
+        $tanggapan->save();
 
         return back();
     }

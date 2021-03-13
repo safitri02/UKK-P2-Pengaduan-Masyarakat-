@@ -35,6 +35,7 @@
         <td>  <img style="width:40px" src="{{ url('/storage/' .$d->gambar) }}"> </td>
         <td>
         <a href="/pengaduan/detail/{{ $d->id }}"><i class="fa fa-eye"> </i></a>
+        <a href="/pengaduan/status"><i class="fa fa-check ml-3"> </i></a>
         </td>
       </tr>
       @endforeach

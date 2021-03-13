@@ -10,7 +10,7 @@
 <div class="card card-primary">
 <div class="card-header"><h4>Aduan Dari : {{ $data->user->nama }}</h4></div>
 <div class="card-body">
-<form method="POST" action="/proses_registrasi">
+<form method="POST" action="/pengaduan/detail/{{ $data->id }}">
 @csrf
     <div class="form-group">
     <label for="tanggal">Tanggal & Tahun</label>
@@ -29,6 +29,16 @@
     <input id="judul" rows="3" type="text" class="form-control" name="judul" readonly value="{{ $data->isi }}">
     <div class="invalid-feedback">
     </div>
+    </div>
+    <div class="form-group">
+    <label for="tanggapan">Tanggapan Anda</label>
+    <textarea class="form-control" id="tanggapan" name="tanggapan" value="{{ old('tanggapan') }}" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+    <button type="submit" class="btn btn-primary float-right">
+        Tanggapi
+    </button>
     </div>
  
     {{-- <div class="form-group">
@@ -70,18 +80,19 @@
 <div class="card-header">
   <h4>Tanggapan Anda</h4>
 </div>
-<div class="card-body">
-    <div class="form-group">
-    <label for="tanggapan">Tanggapan Anda</label>
-    <textarea class="form-control" id="tanggapan" name="tanggapan" value="{{ old('tanggapan') }}" rows="3"></textarea>
-    </div>
+<div class="card-body"> 
 
-    <div class="form-group">
-    <button type="submit" class="btn btn-primary float-right">
-        Tanggapi
-    </button>
-    </div>
-
+    @forelse($t as $ta)
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+        <p style="font-size:20px">{{ $ta->tanggapan }}</p>
+        </li>
+    </ul>
+    @empty
+     <ul class="list-group">
+        <li class="list-group-item justify-content-center">Anda Belom Menanggapi</li>
+    </ul>
+    @endforelse
 </div>
 </div>
 </div>

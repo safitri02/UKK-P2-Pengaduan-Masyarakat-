@@ -47,8 +47,9 @@ class MasyarakatController extends Controller
 
     public function show($id)
     {
-       $data = Pengaduan::find($id);
-       return view('masyarakat.detail', compact('data'));
+        $t = DB::table('tanggapan')->where('id_pengaduan', $id)->get();
+        $data = Pengaduan::find($id);
+        return view('masyarakat.detail', compact('data', 't'));
     }
     
 }

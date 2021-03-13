@@ -139,7 +139,7 @@
          </span>
         </td>
         <td>
-          <a href="/pengaduan/detail/{{ $d->id }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"> </i></a>
+          <a href="/pengaduan/detail/{{ $a->id }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"> </i></a>
           {{-- <a href="/masyarakat/detail/{{ $d->id }}" class="btn btn-success btn-sm"><i class="fa fa-check ml-3"> </i></a> --}}
         </td>
       </tr>
