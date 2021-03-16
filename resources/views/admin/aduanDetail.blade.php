@@ -60,17 +60,7 @@
 </div>
 <div class="card-body">
     <div class="form-group">
-        @if($data->status = 'PROSES')
-        <span class="ml-4 btn btn-warning btn-block">
-        @elseif($data->status = 'TERIMA')
-            <span class="ml-4 btn btn-success btn-block">
-        @elseif($data->status = 'TOLAK')
-        <span class="ml-4 btn btn-danger btn-block">
-        @else
-        <span>
-        @endif
-        {{ $data->status }}
-        </span>
+      <span class="btn btn-primary btn-block">DI {{ $data->status }}</span>
     </div>
 
 </div>

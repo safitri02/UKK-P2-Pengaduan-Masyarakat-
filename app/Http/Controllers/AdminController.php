@@ -31,8 +31,9 @@ class AdminController extends Controller
 
     public function detail(Request $req, $id)
     {
-        $t = DB::table('tanggapan')->where('id_pengaduan', $id)->get();
-        $data = Pengaduan::with('user')->find($id)->first();
+        // $t = DB::table('tanggapan')->where('id_pengaduan', $id)->get();
+        $t= Tanggapan::where('id_pengaduan', $id)->get();
+        $data = Pengaduan::with('user')->find($id);
         return view('admin.aduanDetail', compact('data', 't'));
     }
 

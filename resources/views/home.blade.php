@@ -12,8 +12,7 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav ml-auto">
       <a class="nav-link" href="#">Home</a>
-      <a class="nav-link" href="#">Tentang</a>
-      <a class="nav-link" href="#">Kontak</a>
+      <a class="nav-link" href="/pengaduan">Pengaduan</a>
       <a class="button mr-5" href="/masuk">Masuk</a>
     </div>
   </div>
@@ -31,7 +30,7 @@
   </div>
 </div>
 {{-- End Jumbotron --}}
-<div class="col-md-8 offset-2">
+{{-- <div class="col-md-8 offset-2">
 <div class="control-panel shadow">
     <div class="row">
         <div class="col-md">1</div>
@@ -39,7 +38,7 @@
         <div class="col-md">1</div>
     </div>
 </div>
-</div>
+</div> --}}
 
 {{-- Container --}}
 <div class="container mb-5">
@@ -81,10 +80,12 @@
 </div>
 {{-- End Container --}}
 
-<div class="registrasi mb-5">
+{{-- <div class="registrasi mb-5">
+<div class="text" style="margin-top:50px;">
   <h3>Belom Punya Akun?</h3>
   <button class="button2">Buat Akun</button>
 </div>
+</div> --}}
 
 
 @endsection

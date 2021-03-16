@@ -38,7 +38,7 @@ Route::get('/admin', [AdminController::class, 'index']);
 Route::get('/admin/masyarakat', [AdminController::class, 'masyarakat']);
 Route::get('/admin/aduan', [AdminController::class, 'aduan']);
 Route::get('/pengaduan/detail/{id}', [AdminController::class, 'detail']);
-Route::get('/tanggapan/{id}/status', [AdminController::class, 'status']);
+// Route::get('/tanggapan/{id}/status', [AdminController::class, 'status']);
 Route::post('/pengaduan/detail/{id}', [AdminController::class, 'tanggapan']);
 Route::get('/pengaduan/{id}/status', [AdminController::class, 'status']);
 
